@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Importing and using auth routes
-import authRoutes from "./routes/authRoutes.js";
+import authRoutes from "./routes/auth.routes.js";
 app.use("/api/auth", authRoutes);
 
 // Global error handler
