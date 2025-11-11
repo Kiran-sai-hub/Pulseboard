@@ -5,7 +5,7 @@ import {
   getAllDataSources,
   getDataSourceById,
   updateDataSource,
-  deleteDataSource
+  deleteDataSource,
 } from "../controllers/dataSource.controllers.js";
 
 const router = express.Router();
