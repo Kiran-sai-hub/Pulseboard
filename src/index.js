@@ -14,8 +14,13 @@ app.use(cookieParser());
 import authRoutes from "./routes/auth.routes.js";
 app.use("/api/auth", authRoutes);
 
+// importing and using data source routes
 import dataSourceRoutes from "./routes/dataSource.routes.js";
 app.use("/api/data-sources", dataSourceRoutes);
+
+// Importing and using metricCard routes
+import metricCardRoutes from "./routes/metricCard.routes.js";
+app.use("/api/metric-cards", metricCardRoutes);
 
 // Global error handler
 app.use(errorHandler);

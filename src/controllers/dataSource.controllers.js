@@ -75,10 +75,12 @@ const updateDataSource = asyncHandler(async (req, res, next) => {
     throw new ApiError(404, "Data Source not found");
   }
 
-  if (description !== undefined && typeof description === "string")
+  if (description !== undefined && typeof description === "string") {
     dataSource.description = description.trim();
-  if (updateFrequency !== undefined)
+  }
+  if (updateFrequency !== undefined) {
     dataSource.updateFrequency = updateFrequency;
+  }
   if (isActive !== undefined) dataSource.isActive = isActive;
   if (mockData !== undefined) dataSource.mockData = mockData;
 
