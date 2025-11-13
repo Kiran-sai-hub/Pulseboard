@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import MetricCard from "../models/metricCard.model.js";
 import DataSource from "../models/dataSource.model.js";
+import { getMetricStatus } from "../utils/statusCalc.js";
 
 const createMetricCard = asyncHandler(async (req, res) => {
   const { title, dataSource, value, unit, threshold } = req.body;
@@ -25,14 +26,7 @@ const createMetricCard = asyncHandler(async (req, res) => {
     );
   }
 
-  let status = "normal";
-  if (threshold !== undefined) {
-    if (value >= threshold * 1.2) {
-      status = "critical";
-    } else if (value >= threshold) {
-      status = "warning";
-    }
-  }
+  let status = getMetricStatus(value, threshold);
 
   const metricCard = await MetricCard.create({
     title,
@@ -115,13 +109,7 @@ const updateMetricCard = asyncHandler(async (req, res) => {
     const currentValue = metricCard.value;
     const currentThreshold = metricCard.threshold;
 
-    if (currentValue >= currentThreshold * 1.2) {
-      metricCard.status = "critical";
-    } else if (currentValue >= currentThreshold) {
-      metricCard.status = "warning";
-    } else {
-      metricCard.status = "normal";
-    }
+    metricCard.status = getMetricStatus(currentValue, currentThreshold);
   }
 
   metricCard.lastUpdatedAt = Date.now();
