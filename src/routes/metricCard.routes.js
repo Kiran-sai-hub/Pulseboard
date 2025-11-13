@@ -5,7 +5,7 @@ import {
   getAllMetricCards,
   getMetricCardById,
   updateMetricCard,
-} from "../controllers/metricCard.controllers";
+} from "../controllers/metricCard.controllers.js";
 import protectRoutes from "../middlewares/protectRoutes.js";
 
 const router = express.Router();

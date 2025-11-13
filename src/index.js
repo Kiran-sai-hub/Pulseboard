@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import ENV_VARS from "./config/envVars.js";
 import errorHandler from "./middlewares/errorHandler.js";
+import { scheduleMetricUpdates } from "./jobs/updateMetric.js";
 
 const app = express();
 
@@ -30,6 +31,8 @@ connectDB()
     const PORT = ENV_VARS.PORT;
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
+      
+      scheduleMetricUpdates();
     });
   })
   .catch((error) => {
