@@ -89,7 +89,7 @@ Create a `.env` file in the root directory:
 
 ```env
 # Database
-DB_URL=mongodb+srv://username:password@cluster.mongodb.net/Pulseboard?retryWrites=true&w=majority
+DB_URL=your_atlas_cluster_uri
 
 # Server
 PORT=your_port
