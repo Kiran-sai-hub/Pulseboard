@@ -1,5 +1,8 @@
 import express from "express";
 import cookieParser from "cookie-parser";
+import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 
 import connectDB from "./config/db.js";
 import ENV_VARS from "./config/envVars.js";
@@ -11,6 +14,12 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(helmet());
+app.use(cors());
+app.use(rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+}));
 
 // Importing and using auth routes
 import authRoutes from "./routes/auth.routes.js";

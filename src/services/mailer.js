@@ -18,7 +18,9 @@ export const sendAlertEmail = async (to, subject, message) => {
         text: message,
     };
     await transporter.sendMail(mailOptions);
+    return true;
   } catch (error) {
     console.error("Error sending alert email:", error.message);
+    return false;
   }
 };
