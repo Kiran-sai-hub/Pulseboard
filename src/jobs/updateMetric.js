@@ -78,6 +78,7 @@ export const updateMetricsJob = async () => {
             threshold: metricCard.threshold,
             triggeredAt: Date.now(),
             owner: metricCard.owner,
+            sent: false,
         });
 
         console.log(

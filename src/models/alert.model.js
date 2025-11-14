@@ -29,6 +29,10 @@ const alertSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    sent: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
